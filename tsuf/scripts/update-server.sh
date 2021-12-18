@@ -20,8 +20,7 @@ restart=0
 # If the proc is running in the first place, don't do anything
 if [ -n "$proc" ]
 then
-	echo "Detected running server... stopping it now and will restart on com
-pletion of update"
+	echo "Detected running server... stopping it now and will restart on completion of update"
         restart=1
         ./stop-server.sh
 fi
