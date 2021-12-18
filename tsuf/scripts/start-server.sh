@@ -1,5 +1,10 @@
 #!/bin/bash -x
 
+DIR=`echo $0 | sed -E 's/\/[^\/]+$/\//'`
+if [ "X$0" != "X$DIR" ]; then
+	cd "$DIR"
+fi
+
 cd ..
 
 findproc() {
@@ -22,9 +27,6 @@ fi
 backupfile=$(stat --printf "consoles/console-%y" console.log)
 mv console.log "$backupfile"
 gzip "$backupfile"
-
-# Cheap trick to set this variable which we need
-echo "\$Server::Offline = true;" >> platinum/client/mbpPrefs.cs
 
 # Pretty simple server starting script
 screen -dmS mbp wineconsole ./marbleblast.exe -dedicated
